@@ -18,6 +18,12 @@ func main() {
 	fmt.Println("Steps visualization")
 	_ = insertionSortir(data, true)
 	fmt.Println()
+
+	fmt.Println("========Soal 3========")
+	fmt.Println("Input ", data)
+	fmt.Println("Sortir ", reverseSorting(data, false))
+	fmt.Println("Steps visualization")
+	_ = reverseSorting(data, true)
 }
 
 func insertionSortir(data []int, withDiagram bool) []int {
@@ -37,6 +43,25 @@ func insertionSortir(data []int, withDiagram bool) []int {
 			}
 		}
 		dataArray[j+1] = value
+	}
+	return dataArray
+}
+
+func reverseSorting(data []int, withDiagram bool) []int {
+	var dataArray []int
+	dataArray = append(dataArray, data...)
+
+	for i := 0; i < len(data); i++ {
+		for j := 0; j < len(data)-i-1; j++ {
+			if dataArray[j] < dataArray[j+1] {
+				titip := dataArray[j]
+				dataArray[j] = dataArray[j+1]
+				dataArray[j+1] = titip
+				if withDiagram {
+					diagram(dataArray)
+				}
+			}
+		}
 	}
 	return dataArray
 }
