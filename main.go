@@ -1,10 +1,47 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
 	data := []int{1, 4, 5, 6, 8, 2}
 
+	fmt.Println("========Soal 1========")
+	fmt.Println("Input ", data)
+	diagram(data)
+	fmt.Println()
+
+	fmt.Println("========Soal 2========")
+	fmt.Println("Input ", data)
+	fmt.Println("Sortir ", insertionSortir(data, false))
+	fmt.Println("Steps visualization")
+	_ = insertionSortir(data, true)
+	fmt.Println()
+}
+
+func insertionSortir(data []int, withDiagram bool) []int {
+	var dataArray []int
+	dataArray = append(dataArray, data...)
+	for i := 1; i < len(dataArray); i++ {
+		value := dataArray[i]
+		j := i - 1
+		for j >= 0 && dataArray[j] > value {
+			titip := dataArray[j+1]
+			dataArray[j+1] = dataArray[j]
+			dataArray[j] = titip
+			j--
+
+			if withDiagram {
+				diagram(dataArray)
+			}
+		}
+		dataArray[j+1] = value
+	}
+	return dataArray
+}
+
+func diagram(data []int) {
 	// cari nilai tertinggi yang nantinya sebagai jumlah baris
 	var nilaiTertinggi = data[0]
 	for _, value := range data {
@@ -32,5 +69,4 @@ func main() {
 		}
 		fmt.Println()
 	}
-
 }
